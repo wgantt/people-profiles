@@ -1,7 +1,7 @@
 # PeopleProfiles
 Official Repository for the PeopleProfiles dataset, introduced in the following paper:
 
-> *How Grounded is Wikipedia? A Study on Structured Evidential Support.* William Walden, Kathryn Ricci, Miriam Wanner, Zhengping Jiang, Chandler May, Rongkun Zhou, and Benjamin Van Durme. 2025.
+> *How Grounded is Wikipedia? A Study on Structured Evidential Support and Retrieval.* William Walden, Kathryn Ricci, Miriam Wanner, Zhengping Jiang, Chandler May, Rongkun Zhou, and Benjamin Van Durme. 2025.
 
 ## Contents
 
