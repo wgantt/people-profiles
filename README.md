@@ -1,12 +1,12 @@
 # PeopleProfiles
 Official Repository for the PeopleProfiles dataset, introduced in the following paper:
 
-> *How Grounded is Wikipedia? A Study on Structured Evidential Support and Retrieval.* William Walden, Kathryn Ricci, Miriam Wanner, Zhengping Jiang, Chandler May, Rongkun Zhou, and Benjamin Van Durme. 2025.
+[How Grounded is Wikipedia? A Study on Structured Evidential Support and Retrieval.](https://arxiv.org/abs/2506.12637) William Walden, Kathryn Ricci, Miriam Wanner, Zhengping Jiang, Chandler May, Rongkun Zhou, and Benjamin Van Durme. 2025. arXiv:2506.12637
 
 ## Contents
 
 - `data/`:
-  - The `data` for the three different tasks, described in greater detail below (in [Downloading the Dataset](#downloading-the-dataset))
+  - The data for the **LEAD** and **BODY** splits  (`.jsonl` files)
   - The `qrels` files for each task (see `results/` below). `qrels` files with a number (1, 2, 3) in the file name represent qrels for only those examples/claims that have exactly that many evidence sentences annotated.
 - `results/`: All runfiles and scores for test set results on the **LEAD** (`lead/`), **BODY** (`body/`), and **ENTITY** (`entity/`) evidence retrieval tasks reported in the paper. Scores are computed using [trec_eval](https://github.com/usnistgov/trec_eval) (with the `-m 'all_trec'` option set). Results with BM25, Stella-en-1.5B-v5, and ColBERT-v2 are all first-stage retrieval results; results with Rank1 are reranking results on the BM25 outputs (top 10 for **LEAD** and **BODY**; top 100 for **ENTITY**).
 
@@ -18,6 +18,10 @@ The PeopleProfiles dataset has three subsets, each corresponding to one of the t
 
 - **LEAD**: claims from Wikipedia *lead* sections paired with evidence sentences from the *body* of the same Wikipedia article, with scalar annotations on the claim indicating the degree of support for that claim given the evidence, ranging from -1 (full refutation) to +1 (full support). Claims with support scores of 0 have empty evidence sets; all other claims have non-empty evidence sets.
 - **BODY**: claims from Wikipedia *body* sections paired with evidence from a single *source* document cited by that sentence, along with scalar support annotations.
+
+## Downloading the Data
+
+The `.jsonl` files containing the lead and body data can be downloaded via `git lfs`. If you do not already have `git lfs` installed, run `git lfs install` from within this repo. Then run `git pull`
 
 ## Data Format 
 
