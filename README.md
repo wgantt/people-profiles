@@ -21,7 +21,7 @@ The PeopleProfiles dataset has three subsets, each corresponding to one of the t
 
 ## Downloading the Data
 
-The `.jsonl` files containing the lead and body data can be downloaded via `git lfs`. If you do not already have `git lfs` installed, run `git lfs install` from within this repo. Then run `git pull`
+The `.jsonl` files containing the lead and body data are tracked via `git-lfs`. Assuming you have `git-lfs` installed, run `git-lfs pull` after cloning the repo to pull down the files.
 
 ## Data Format 
 
@@ -31,10 +31,11 @@ Each item in the **LEAD** data has a number of fields. For most use cases, inclu
 
 - `instance-id` (`str`): A unique identifier for the example
 - `report-title` (`str`): The name of the Wikipedia article this example came from
-- `subclaim-decontext`: The *decontextualized* claim for this example (used as the query for the **LEAD** retrieval task)
+- `subclaim-decontext` (`str`): The *decontextualized* claim for this example (used as the query for the **LEAD** retrieval task)
 - `subclaim` (`str`): The *non-decontextualized* claim for this example
 - `subclaim-idx` (`int`): The index of the `subclaim`/`subclaim-decontext` within the list of *all* claims decomposed from the sentence (NOTE: these other claims are not included in the example; each claim is an example unto itself).
 - `score` (`float`): The support score for the `subclaim`/`subclaim-decontext` given the evidence (`snippet-sents`)
+- `score-calibrated (`float`): Support score calibrated via isotonic regression (not used in the paper)
 - `source-text` (`str`): The full text of the body of the Wikipedia article (excluding the lead section), given as a list of sentences
 - `snippet-sent-idxs` (`List[int]`): The indices of the evidence sentences for the `subclaim`/`subclaim-decontext` within the `source-text`
 - `snippet-sents` (`List[str]`): The texts of the above evidence sentences
@@ -52,6 +53,10 @@ The following additional fields may also be helpful &dash; notably if you are do
 
 ### BODY
 
-The **BODY** data has many of the same fields as the **LEAD** data, although some of them have different interpretations. The most important fields are the same as the ones for the **LEAD** data:
+The **BODY** data has many of the same fields as the **LEAD** data, although some of them have different interpretations. The most important fields are the same as the ones listed abaove for the **LEAD** data. However, some of these have slightly different interpretations:
 
-TODO
+- `subclaim-decontext` (`str`): The *decontextualized* claim for this example (used as the query for the **BODY** retrieval task)
+- `subclaim` (`str`): The *non-decontextualized* claim for this example
+- `source-text` (`str`): The full text of the external (non-Wikipedia) source article associated with the subclaim
+
+The additional fields are the same as in the **LEAD** task and have the same interpretations.
